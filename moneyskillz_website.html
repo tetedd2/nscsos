@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneySkillz - ติดต่อและขอความช่วยเหลือ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', 'Prompt', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4a5568;
+        }
+
+        .logo::before {
+            content: "💰";
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            margin-top: 2rem;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-card p {
+            color: #718096;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .faq-section {
+            background: #f8f9fa;
+            padding: 3rem 0;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            opacity: 0.9;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #667eea;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .download-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">MoneySkillz</div>
+            <ul class="nav-links">
+                <li><a href="#home">หน้าแรก</a></li>
+                <li><a href="#contact">ติดต่อเรา</a></li>
+                <li><a href="#faq">คำถามที่พบบ่อย</a></li>
+                <li><a href="#help">ความช่วยเหลือ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>MoneySkillz</h1>
+                <p>แอพพลิเคชั่นจัดการการเงินส่วนบุคคลที่ช่วยให้คุณควบคุมการเงินได้อย่างชาญฉลาด</p>
+                
+                <div class="download-buttons">
+                    <a href="#" class="btn">
+                        📱 ดาวน์โหลดจาก App Store
+                    </a>
+                    <a href="#" class="btn">
+                        🤖 ดาวน์โหลดจาก Google Play
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content">
+            <section id="contact" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">ติดต่อเรา</h2>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <span class="contact-icon">📧</span>
+                            <h3>อีเมล</h3>
+                            <p>ส่งคำถามหรือปัญหาที่พบ</p>
+                            <div class="contact-info">
+                                <strong>support@moneyskillz.com</strong><br>
+                                <small>ตอบกลับภายใน 24 ชั่วโมง</small>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <span class="contact-icon">💬</span>
+                            <h3>แชทสด</h3>
+                            <p>พูดคุยกับทีมสนับสนุนโดยตรง</p>
+                            <div class="contact-info">
+                                <strong>จันทร์-ศุกร์ 9:00-18:00</strong><br>
+                                <small>เสาร์-อาทิตย์ 10:00-16:00</small>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <span class="contact-icon">📞</span>
+                            <h3>โทรศัพท์</h3>
+                            <p>สำหรับปัญหาเร่งด่วน</p>
+                            <div class="contact-info">
+                                <strong>02-xxx-xxxx</strong><br>
+                                <small>บริการ 24/7</small>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <span class="contact-icon">📍</span>
+                            <h3>สำนักงาน</h3>
+                            <p>มาเยี่ยมชมเราได้</p>
+                            <div class="contact-info">
+                                <strong>123 ถ.สุขุมวิท กรุงเทพฯ</strong><br>
+                                <small>จันทร์-ศุกร์ 9:00-17:00</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 1.5rem; color: #2d3748;">ส่งข้อความถึงเรา</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">ชื่อ-นามสกุล</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">อีเมล</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="category">หมวดหมู่</label>
+                                <select id="category" name="category" required>
+                                    <option value="">เลือกหมวดหมู่</option>
+                                    <option value="bug">รายงานข้อผิดพลาด</option>
+                                    <option value="feature">ขอฟีเจอร์ใหม่</option>
+                                    <option value="account">ปัญหาบัญชีผู้ใช้</option>
+                                    <option value="payment">ปัญหาการชำระเงิน</option>
+                                    <option value="general">คำถามทั่วไป</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">ข้อความ</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="กรุณาอธิบายปัญหาหรือคำถามของคุณ..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">ส่งข้อความ</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <section id="faq" class="faq-section">
+                <div class="container">
+                    <h2 class="section-title">คำถามที่พบบ่อย</h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            MoneySkillz คืออะไร?
+                        </div>
+                        <div class="faq-answer">
+                            MoneySkillz เป็นแอพพลิเคชั่นจัดการการเงินส่วนบุคคลที่ช่วยให้คุณติดตามรายรับ-รายจ่าย วางแผนการออม และจัดการงบประมาณได้อย่างมีประสิทธิภาพ
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ข้อมูลของฉันปลอดภัยหรือไม่?
+                        </div>
+                        <div class="faq-answer">
+                            เราใช้เทคโนโลยีการเข้ารหัสระดับธนาคารและไม่เก็บข้อมูลบัญชีธนาคารของคุณบนเซิร์ฟเวอร์ ข้อมูลทั้งหมดได้รับการปกป้องอย่างเข้มงวด
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ฟีเจอร์หลักของแอพมีอะไรบ้าง?
+                        </div>
+                        <div class="faq-answer">
+                            ติดตามรายรับ-รายจ่าย, จัดหมวดหมู่การใช้จ่าย, วางแผนการออม, รายงานทางการเงิน, แจ้งเตือนการจ่ายบิล, และเครื่องมือวิเคราะห์การเงิน
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            แอพใช้งานฟรีหรือเสียเงิน?
+                        </div>
+                        <div class="faq-answer">
+                            แอพมีทั้งแบบฟรีและแบบพรีเมียม ฟีเจอร์พื้นฐานใช้ได้ฟรี ส่วนฟีเจอร์ขั้นสูงและรายงานเชิงลึกต้องสมัครแบบพรีเมียม
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ฉันจะรีเซ็ตรหัสผ่านได้อย่างไร?
+                        </div>
+                        <div class="faq-answer">
+                            ไปที่หน้าเข้าสู่ระบบ แล้วคลิก "ลืมรหัสผ่าน" กรอกอีเมลของคุณ และทำตามขั้นตอนในอีเมลที่ส่งไปให้
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ฉันสามารถใช้งานแอพในหลายอุปกรณ์ได้ไหม?
+                        </div>
+                        <div class="faq-answer">
+                            ได้ครับ คุณสามารถเข้าใช้บัญชีเดียวกันในหลายอุปกรณ์ได้ ข้อมูลจะซิงค์อัตโนมัติผ่าน Cloud
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="help" class="content-section">
+                <div class="container">
+                    <h2 class="section-title">ศูนย์ความช่วยเหลือ</h2>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <span class="contact-icon">📚</span>
+                            <h3>คู่มือการใช้งาน</h3>
+                            <p>เรียนรู้วิธีใช้งานฟีเจอร์ต่างๆ</p>
+                            <div class="contact-info">
+                                <a href="#" style="color: #667eea; text-decoration: none;">
+                                    <strong>ดูคู่มือทั้งหมด →</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <span class="contact-icon">🎥</span>
+                            <h3>วิดีโอสอนใช้งาน</h3>
+                            <p>ชมวิดีโอสาธิตการใช้งาน</p>
+                            <div class="contact-info">
+                                <a href="#" style="color: #667eea; text-decoration: none;">
+                                    <strong>ดูวิดีโอ →</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <span class="contact-icon">👥</span>
+                            <h3>ชุมชนผู้ใช้งาน</h3>
+                            <p>แลกเปลี่ยนประสบการณ์กับผู้ใช้คนอื่น</p>
+                            <div class="contact-info">
+                                <a href="#" style="color: #667eea; text-decoration: none;">
+                                    <strong>เข้าร่วมชุมชน →</strong>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-card">
+                            <span class="contact-icon">🔧</span>
+                            <h3>แก้ไขปัญหาเบื้องต้น</h3>
+                            <p>วิธีแก้ปัญหาที่พบบ่อย</p>
+                            <div class="contact-info">
+                                <a href="#" style="color: #667eea; text-decoration: none;">
+                                    <strong>ดูวิธีแก้ไข →</strong>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">📷</a>
+                <a href="#">🐦</a>
+                <a href="#">💼</a>
+            </div>
+            <p>&copy; 2025 MoneySkillz. สงวนลิขสิทธิ์ทุกประการ</p>
+            <p>พัฒนาด้วยความใส่ใจเพื่อการเงินที่ดีของคุณ</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('ขอบคุณสำหรับข้อความของคุณ! เราจะติดต่อกลับภายใน 24 ชั่วโมง');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.contact-card, .faq-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
